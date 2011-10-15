@@ -1,0 +1,26 @@
+
+dn: cn=visp
+objectClass: organizationalRole
+cn: visp
+
+dn: dc=org,cn=visp
+objectClass: device
+objectClass: dcObject
+dc: org
+cn: org
+
+dn: dc=interlockroc, dc=org,cn=visp
+objectClass: device
+objectClass: dcObject
+dc: interlockroc
+cn: interlockroc
+
+dn: ou=hackers, dc=interlockroc, dc=org, cn=visp
+objectClass: top
+objectClass: organizationalUnit
+ou: hackers
+
+dn: ou=iButtons, dc=interlockroc, dc=org, cn=visp
+objectClass: top
+objectClass: organizationalUnit
+ou: iButtons

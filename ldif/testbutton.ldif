@@ -1,0 +1,8 @@
+
+
+dn: uid=7C000012FF852001 ,ou=iButtons, dc=interlockroc, dc=org, cn=visp
+objectClass: top
+objectClass: iLockButton
+iLockRocButtonID: 7C000012FF852001
+iLockRocButtonActive: FALSE
+

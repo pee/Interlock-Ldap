@@ -1,0 +1,46 @@
+
+
+Some quick notes:
+
+
+Input validation is rudimentary at best
+
+If you put spaces in some string arguments, ldap will get confused think it's not ascii, and base64 encode it for you!
+
+To stay synchronized we are storing the button type in LDAP as:
+
+8 bit family code  ( for instance )
+48 bit serial number
+8 bit CRC
+
+ID --48-bit-id- CB
+01 000012FDA5B3 6B
+
+Run examples:
+
+Button:
+./addButton.py --host ldap://localhost --bindDN "cn=root,cn=visp" --password interlock --button 01000012FDA5B36B
+./delButton.py --host ldap://localhost --bindDN "cn=root,cn=visp" --password interlock --button 01000012FDA5B36B
+./enableButton.py --host ldap://localhost --bindDN "cn=root,cn=visp" --password interlock --button 01000012FDA5B36B
+./disableButton.py --host ldap://localhost --bindDN "cn=root,cn=visp" --password interlock --button 01000012FDA5B36B
+
+Hackers:
+./addHacker.py --host ldap://localhost --bindDN "cn=root,cn=visp" --password interlock --uid pee2 --name "paul erkkila2" --address "address 2" --alias "alias 2" --econtact "econtact 2" --status "lost in space" --level "4"
+./delHacker.py --host ldap://localhost --bindDN "cn=root,cn=visp" --password interlock --uid pee2 
+
+Link a button to a user:
+./linkButton.py --host ldap://localhost --bindDN "cn=root,cn=visp" --password interlock --button 01000012FDA5B36B --uid pee
+
+List the buttons out:
+
+./listButtons.py --host ldap://localhost --bindDN "cn=root,cn=visp" --password interlock
+
+Setup
+
+- setup the openldap configuration sing the configs from the ./openldap director
+
+load the initial directory with the contents of the ldif/core.ldif file using ldapadd
+( ldapadd -D "cn=root,cn=visp" -W -f core/core.ldif  )
+
+
+

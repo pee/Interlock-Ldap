@@ -1,0 +1,86 @@
+#- first middle last name (etc)
+#- address information
+#- nym or alias
+#- emergency contact name and #
+#- 'iButton ID'
+#- membership status
+#- membership level
+
+#  2.16.840.1.14487.2  - interlock rochester
+
+objectIdentifier iLockRocAttr 2.16.840.1.14487.2.1
+objectIdentifier iLockRocObj  2.16.840.1.14487.2.2
+# lazy!
+objectIdentifier iLockType 1.3.6.1.4.1.1466.115.121.1
+
+attributetype ( iLockRocAttr:1 NAME 'iLockRocName'
+	EQUALITY caseIgnoreMatch
+	SUBSTR	caseIgnoreSubstringsMatch
+	SYNTAX iLockType:15 SINGLE-VALUE )
+
+attributeType ( iLockRocAttr:2 NAME 'iLockRocButtonID'
+	EQUALITY caseIgnoreMatch
+	SUBSTR	caseIgnoreSubstringsMatch
+	SYNTAX iLockType:15 SINGLE-VALUE )
+
+attributeType ( iLockRocAttr:3 NAME 'iLockRocButtonActive'
+	EQUALITY booleanMatch
+	SYNTAX iLockType:7 SINGLE-VALUE )
+
+attributeType ( iLockRocAttr:4 NAME 'iLockRocButtonDN'
+	SYNTAX iLockType:12 )
+
+attributeType ( iLockRocAttr:5 NAME 'iLockRocAddress'
+	EQUALITY caseIgnoreMatch
+	SUBSTR	caseIgnoreSubstringsMatch
+	SYNTAX iLockType:15 SINGLE-VALUE )
+
+attributeType ( iLockRocAttr:6 NAME 'iLockRocAlias'
+	EQUALITY caseIgnoreMatch
+	SUBSTR	caseIgnoreSubstringsMatch
+	SYNTAX iLockType:15 SINGLE-VALUE )
+
+attributeType ( iLockRocAttr:7 NAME 'iLockRocEmergencyContact'
+	EQUALITY caseIgnoreMatch
+	SUBSTR	caseIgnoreSubstringsMatch
+	SYNTAX iLockType:15 SINGLE-VALUE )
+
+attributeType ( iLockRocAttr:8 NAME 'iLockRocMemberStatus'
+	EQUALITY caseIgnoreMatch
+	SUBSTR	caseIgnoreSubstringsMatch
+	SYNTAX iLockType:15 SINGLE-VALUE )
+
+attributeType ( iLockRocAttr:9 NAME 'iLockRocMemberLevel'
+	EQUALITY caseIgnoreMatch
+	SUBSTR	caseIgnoreSubstringsMatch
+	SYNTAX iLockType:15 SINGLE-VALUE )
+
+attributeType ( iLockRocAttr:10 NAME 'iLockRocUserDN'
+	SYNTAX iLockType:12 SINGLE-VALUE )
+
+
+objectclass ( iLockRocObj:1 
+	NAME 'iLockButton'
+	SUP top STRUCTURAL
+	MUST ( iLockRocButtonID $ iLockRocButtonActive )
+	MAY ( iLockRocUserDN $ uid ) )
+
+objectclass ( iLockRocObj:2
+	NAME 'iLockRocUser'
+	SUP top STRUCTURAL
+	MUST ( uid $ iLockRocName $ iLockRocAddress $ iLockRocAlias $ iLockRocEmergencyContact 
+			$ iLockRocMemberStatus $ iLockRocMemberLevel )
+	MAY ( iLockRocButtonDN $ cn) )
+
+
+
+
+
+
+
+
+
+
+
+
+

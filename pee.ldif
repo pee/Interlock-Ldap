@@ -1,0 +1,11 @@
+dn: uid=pee,ou=hackers,dc=interlockroc,dc=org,cn=visp
+objectClass: top
+objectClass: iLockRocUser
+uid: pee
+iLockRocName: Paul Erkkila
+iLockRocAddress: Up there on the hill, Palmyra N.Y. 14522
+iLockRocAlias: peevis
+iLockRocEmergencyContact: 911
+iLockRocMemberStatus: high
+iLockRocMemberLevel: fuckingawesome
+
