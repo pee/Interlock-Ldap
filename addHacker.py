@@ -1,20 +1,17 @@
 #!/usr/bin/python
 #
 #
-# ./addHacker.py --host ldap://localhost --bindDN "cn=root,cn=visp" --password interlock --button 7C000012FF852001
+# ./addHacker.py <bunch of crap>
 #
 #
 from irocldap import IRocLDAP
 import argparse
+import yaml
 
 
 def main():
 
 	parser = argparse.ArgumentParser()
-
-	parser.add_argument('--host', dest='host', required=True)
-	parser.add_argument('--bindDN', dest='bindDN', required=True)
-	parser.add_argument('--password', dest='password', required=True)
 
 	parser.add_argument('--uid', dest='uid', required=True)
 	parser.add_argument('--name', dest='name', required=True)
@@ -28,9 +25,14 @@ def main():
 
 	args = parser.parse_args()
 
-	host     = args.host
-	bindDN   = args.bindDN
-	password = args.password
+	config = file('config.yaml', 'r')
+	config = yaml.load(config)
+	toolConfig = config['tool']
+
+	host     = toolConfig['host']
+	bindDN   = toolConfig['bindDN']
+	password = toolConfig['password']
+
 
 	uid      = args.uid
 	name     = args.name

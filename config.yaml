@@ -8,3 +8,8 @@ ldap:
 listener:
     host: 192.168.2.1
     port: 9999
+
+tool:
+    host: ldap://localhost
+    bindDN: cn=root,cn=visp
+    password: interlock

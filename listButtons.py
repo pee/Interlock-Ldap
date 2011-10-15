@@ -1,24 +1,23 @@
 #!/usr/bin/python
 #
 #
-# ./listButtons.py --host ldap://localhost --bindDN "cn=root,cn=visp" --password interlock 
+# ./listButtons.py
 #
 #
 from irocldap import IRocLDAP
 import argparse
-
+import yaml
 
 def main():
 
-	parser = argparse.ArgumentParser()
-	parser.add_argument('--host', dest='host', required=True)
-	parser.add_argument('--bindDN', dest='bindDN', required=True)
-	parser.add_argument('--password', dest='password', required=True)
-	args = parser.parse_args()
+	config = file('config.yaml', 'r')
+	config = yaml.load(config)
+	toolConfig = config['tool']
 
-	host     = args.host
-	bindDN   = args.bindDN
-	password = args.password
+	host     = toolConfig['host']
+	bindDN   = toolConfig['bindDN']
+	password = toolConfig['password']
+
 
 	iRocLdap = IRocLDAP(host, bindDN, password)
 
