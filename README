@@ -43,4 +43,7 @@ load the initial directory with the contents of the ldif/core.ldif file using ld
 ( ldapadd -D "cn=root,cn=visp" -W -f core/core.ldif  )
 
 
+Arduino code that interfaces with this can be found here:
+
+https://github.com/pee/Interlock-Doorduino
 
