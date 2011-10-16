@@ -59,8 +59,10 @@ class UDPListener(Thread):
 				print status
 				self.serversock.sendto( status , cAddr )
 
-			except	e:
-				self.logger.log(e);
+			# Fixme: explodes
+			except Exception, e:
+#				self.logger.log(e);
+				print e
 		
 
 

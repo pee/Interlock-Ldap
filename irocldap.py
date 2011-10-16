@@ -300,7 +300,9 @@ class IRocLDAP():
 
 			if self.buttonExists(buttonID) == False:
 				print "Button with ID " + buttonID + " does not exist"
-				return False
+				# "False" as in active, not false as in the truth valise
+				# maybe we should change this
+				return "False"
 
 			results = self._getButton( buttonID )
 
@@ -377,25 +379,32 @@ class IRocLDAP():
 			hStatus = self._getHacker( uid )
 			(dn, attrs) = hStatus[0]
 			# iLockRocUserDN
-			oldAttr = {}
-#			print dn
-
 
 			oldAttr = {}
 			oldDN = self.getButtonUserDN( buttonID )
-#			print "oldDN:" + oldDN
-			oldAttr['iLockRocUserDN'] = oldDN
-			attrs = {}
-			attrs['iLockRocUserDN'] = dn
+			print "oldDN:" + oldDN
+			if oldDN is "Undef":
+				print "oldDN is none"
+				attrs = {}
+				attrs['iLockRocUserDN'] = dn
+				ldif = modlist.modifyModlist(oldAttr, attrs)
+				modDN = "uid=" + buttonID + "," + self.BUTTON_BASE
+				self.conn.modify_s( modDN,ldif )
+				self.dumpButton( buttonID )
 
-			# turn it into ldif
-			ldif = modlist.modifyModlist( oldAttr , attrs )
+			else:
+				oldAttr['iLockRocUserDN'] = oldDN
+				attrs = {}
+				attrs['iLockRocUserDN'] = dn
 
-			# stuff it into the server
-			modDN = "uid=" + buttonID + "," + self.BUTTON_BASE
-			self.conn.modify_s( modDN,ldif )
+				# turn it into ldif
+				ldif = modlist.modifyModlist( oldAttr , attrs )
 
-			self.dumpButton( buttonID )
+				# stuff it into the server
+				modDN = "uid=" + buttonID + "," + self.BUTTON_BASE
+				self.conn.modify_s( modDN,ldif )
+
+				self.dumpButton( buttonID )
 
 '''
 
