@@ -19,11 +19,11 @@ if __name__ == '__main__':
 
 	config = file('config.yaml', 'r')
 	config = yaml.load(config)
-	print config
+#	print config
 	ldapConfig = config['ldap']
-	print ldapConfig
+#	print ldapConfig
 	listenConfig = config['listener']
-	print listenConfig
+#	print listenConfig
 
 
 	udpListener = UDPListener( listenConfig, ldapConfig, logger )
