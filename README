@@ -44,21 +44,21 @@ ID --48-bit-id- CB
 Run examples:
 
 Button:
-./addButton.py --host ldap://localhost --bindDN "cn=root,cn=visp" --password interlock --button 01000012FDA5B36B
-./delButton.py --host ldap://localhost --bindDN "cn=root,cn=visp" --password interlock --button 01000012FDA5B36B
-./enableButton.py --host ldap://localhost --bindDN "cn=root,cn=visp" --password interlock --button 01000012FDA5B36B
-./disableButton.py --host ldap://localhost --bindDN "cn=root,cn=visp" --password interlock --button 01000012FDA5B36B
+./addButton.py  --button 01000012FDA5B36B
+./delButton.py  --button 01000012FDA5B36B
+./enableButton.py --button 01000012FDA5B36B
+./disableButton.py --button 01000012FDA5B36B
 
 Hackers:
-./addHacker.py --host ldap://localhost --bindDN "cn=root,cn=visp" --password interlock --uid pee2 --name "paul erkkila2" --address "address 2" --alias "alias 2" --econtact "econtact 2" --status "lost in space" --level "4"
-./delHacker.py --host ldap://localhost --bindDN "cn=root,cn=visp" --password interlock --uid pee2 
+./addHacker.py --uid pee2 --name "paul erkkila2" --address "address 2" --alias "alias 2" --econtact "econtact 2" --status "lost in space" --level "4"
+./delHacker.py --uid pee2 
 
 Link a button to a user:
-./linkButton.py --host ldap://localhost --bindDN "cn=root,cn=visp" --password interlock --button 01000012FDA5B36B --uid pee
+./linkButton.py --button 01000012FDA5B36B --uid pee
 
 List the buttons out:
 
-./listButtons.py --host ldap://localhost --bindDN "cn=root,cn=visp" --password interlock
+./listButtons.py 
 
 
 ===========================================================
