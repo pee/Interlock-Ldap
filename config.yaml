@@ -3,13 +3,13 @@
 ldap:
     host: ldap://localhost
     bindDN: cn=root,cn=visp
-    password: interlock
+    password: balls
 
 listener:
-    host: 192.168.2.1
-    port: 9999
+    host: 10.10.1.42
+    port: 65042
 
 tool:
     host: ldap://localhost
     bindDN: cn=root,cn=visp
-    password: interlock
+    password: balls
