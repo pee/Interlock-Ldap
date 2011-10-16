@@ -1,11 +1,36 @@
 
+This is the server side piece of the door lock code, and is made of a few pieces.
+
+====================================
+An ldap server (openldap)
+-- configs
+   - setup the openldap configuration sing the configs from the ./openldap director
+   - this includes the special schema in schema/interlockroc.schema
+
+   Setup
+   load the initial directory with the contents of the ldif/core.ldif file using ldapadd
+   ( ldapadd -D "cn=root,cn=visp" -W -f ldif/core.ldif  )
+
+====================================
+A few tools to manage the directory
+-- addButton.py
+-- addHacker.py
+-- delButton.py
+-- delHacker.py
+-- disableButton.py
+-- enableButton.py
+-- linkButton.py
+-- listButtons.p
+
+
+====================================
+A python server to answer queries
+-- lockServer.py
+
 
 Some quick notes:
 
 
-Input validation is rudimentary at best
-
-If you put spaces in some string arguments, ldap will get confused think it's not ascii, and base64 encode it for you!
 
 To stay synchronized we are storing the button type in LDAP as:
 
@@ -35,15 +60,20 @@ List the buttons out:
 
 ./listButtons.py --host ldap://localhost --bindDN "cn=root,cn=visp" --password interlock
 
-Setup
 
-- setup the openldap configuration sing the configs from the ./openldap director
-
-load the initial directory with the contents of the ldif/core.ldif file using ldapadd
-( ldapadd -D "cn=root,cn=visp" -W -f ldif/core.ldif  )
-
-
+===========================================================
 Arduino code that interfaces with this can be found here:
 
 https://github.com/pee/Interlock-Doorduino
+
+=============================================================
+TODO:
+=============================================================
+Input validation is rudimentary at best
+
+If you put spaces in some string arguments, ldap will get confused think it's not ascii, and base64 encode it for you!
+Link user->button
+
+
+
 
